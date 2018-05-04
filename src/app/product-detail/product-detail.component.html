@@ -1,0 +1,49 @@
+<div class="thumbnail">
+  <img src="http://placehold.it/820x230" alt="">
+  <div>
+    <h4 class="float-right">{{product?.price}} $</h4>
+    <h4>{{product?.title}}</h4>
+    <p>{{product?.desc}}</p>
+  </div>
+  <div>
+    <p class="float-right">{{comments?.length}}</p>
+    <p>
+      <app-stars [rating]="product?.rating"></app-stars>
+    </p>
+  </div>
+
+</div>
+<div class="thumbnail">
+  <button type="button" class="btn btn-primary btn-lg" [class.active]="isWatched" (click)="watchProduct()">
+    {{isWatched?'Unfollow':'follow'}}
+  </button>
+  <label>Latest bid: {{currentBid | number:'.2-2'}}$</label>
+</div>
+<div class="card card-block bg-faded">
+  <div>
+    <button type="button" class="btn btn-success" (click)="isCommentHidden=!isCommentHidden">Make Comments</button>
+  </div>
+  <div [hidden] = "isCommentHidden">
+    <div>
+      <app-stars [(rating)]="newRating" [readonly]="false"></app-stars>
+    </div>
+    <div>
+      <textarea [(ngModel)] = "newComment"></textarea>
+    </div>
+    <div>
+      <button type="button" class="btn" (click)="addComment()">Upload</button>
+    </div>
+  </div>
+  <div class="row" *ngFor="let comment of comments">
+    <hr>
+    <div class="col-md-12">
+      <app-stars [rating]="comment.rating"></app-stars>
+      <span>{{comment.user}}</span>
+      <span class="float-right">
+        {{comment.timestamp}}
+      </span>
+      <p></p>
+      <p>{{comment.content}}</p>
+    </div>
+  </div>
+</div>

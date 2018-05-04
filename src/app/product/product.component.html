@@ -1,0 +1,22 @@
+<div class="container">
+  <!--<div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Input the key words" [formControl]="titleFilter">
+      </div>
+    </div>
+  </div>-->
+  <div class="row">
+      <div *ngFor="let product of products | async" class="card col-lg-4 col-6">
+        <img class="img-thumbnail img-fluid" [src]="imgUrl" alt="">
+        <div class="caption">
+          <h5 class="float-right">{{product.price}}$</h5>
+          <h5><a [routerLink] = "['/product', product.id]">{{product.title}}</a></h5>
+          <p>{{product.desc}}</p>
+        </div>
+        <div>
+          <app-stars [rating]="product.rating"></app-stars>
+        </div>
+      </div>
+  </div>
+</div>

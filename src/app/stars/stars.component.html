@@ -1,0 +1,4 @@
+<p>
+  <i *ngFor="let star of stars; let i = index;" [class.far]="star" [class.fas]="!star" class="fa-star" (click)="clickStar(i)"></i>
+  <span>{{rating|number:'1.0-2'}} stars</span>
+</p>
